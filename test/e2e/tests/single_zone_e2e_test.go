@@ -1706,7 +1706,6 @@ func createAndValidateUniqueZonalMultiWriterDisk(client *remote.CsiClient, proje
 	disk := typeToDisk[diskType]
 
 	disk.params[common.ParameterAccessMode] = "READ_WRITE_MANY"
-	// .AccessMode
 	volName := testNamePrefix + string(uuid.NewUUID())
 	volume, err := client.CreateVolumeWithCaps(volName, disk.params, defaultMwSizeGb,
 		&csi.TopologyRequirement{

@@ -150,8 +150,6 @@ func getDriverConfig() testutils.DriverConfig {
 	}
 }
 
-// Could do a multi writer optional variable here. That'd force the mincpu platfor and machinetype to a specific thing
-// Create a new context, and have the multi writer contexts run on only that?
 func NewTestContext(zone string, machineType string, minCpuPlatform string) *remote.TestContext {
 	nodeID := fmt.Sprintf("%s-%s-%s", *vmNamePrefix, zone, machineType)
 	klog.Infof("Setting up node %s", nodeID)
