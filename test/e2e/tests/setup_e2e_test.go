@@ -35,16 +35,17 @@ import (
 	remote "sigs.k8s.io/gcp-compute-persistent-disk-csi-driver/test/remote"
 )
 
-// Multi-writer is only supported on M3, C3, and N4 https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms#hd-multi-writer
 var (
-	project                   = flag.String("project", "", "Project to run tests in")
-	serviceAccount            = flag.String("service-account", "", "Service account to bring up instance with")
-	vmNamePrefix              = flag.String("vm-name-prefix", "gce-pd-csi-e2e", "VM name prefix")
-	architecture              = flag.String("arch", "amd64", "Architecture pd csi driver build on")
-	minCpuPlatform            = flag.String("min-cpu-platform", "rome", "Minimum CPU architecture")
-	mwMinCpuPlatform          = flag.String("min-cpu-platform-mw", "sapphirerapids", "Minimum CPU architecture for multiwriter tests")
-	zones                     = flag.String("zones", "us-east4-a,us-east4-c", "Zones to run tests in. If there are multiple zones, separate each by comma")
-	machineType               = flag.String("machine-type", "n2d-standard-4", "Type of machine to provision instance on")
+	project          = flag.String("project", "", "Project to run tests in")
+	serviceAccount   = flag.String("service-account", "", "Service account to bring up instance with")
+	vmNamePrefix     = flag.String("vm-name-prefix", "gce-pd-csi-e2e", "VM name prefix")
+	architecture     = flag.String("arch", "amd64", "Architecture pd csi driver build on")
+	minCpuPlatform   = flag.String("min-cpu-platform", "rome", "Minimum CPU architecture")
+	mwMinCpuPlatform = flag.String("min-cpu-platform-mw", "sapphirerapids", "Minimum CPU architecture for multiwriter tests")
+	zones            = flag.String("zones", "us-east4-a,us-east4-c", "Zones to run tests in. If there are multiple zones, separate each by comma")
+	machineType      = flag.String("machine-type", "n2d-standard-4", "Type of machine to provision instance on")
+	// Multi-writer is only supported on M3, C3, and N4
+	// https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms#hd-multi-writer
 	mwMachineType             = flag.String("mw-machine-type", "c3-standard-4", "Type of machine to provision instance for multiwriter tests")
 	imageURL                  = flag.String("image-url", "projects/ubuntu-os-cloud/global/images/family/ubuntu-minimal-2404-lts-amd64", "OS image url to get image from")
 	runInProw                 = flag.Bool("run-in-prow", false, "If true, use a Boskos loaned project and special CI service accounts and ssh keys")
